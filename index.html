@@ -13,12 +13,13 @@
 <body>
   <header class="bg-primary text-white p-3">
     <h1 class="text-center">Weather Dashboard</h1>
-    <form id="city-form" class="form-inline justify-content-center mt-3">
-      <input type="text" id="city-input" class="form-control mr-2" placeholder="Enter city name">
-      <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    
   </header>
-  <main class="container mt-5">
+  <form id="city-form" class="col-3 form-inline justify-content-center mt-3">
+    <input type="text" id="city-input" class="form-control mr-2" placeholder="Enter city name">
+    <button type="submit" class="col-12 btn btn-primary">Search</button>
+  </form>
+  <main class="col-9 container mt-5">
     <section id="current-weather"></section>
     <section id="forecast" class="row"></section>
   </main>

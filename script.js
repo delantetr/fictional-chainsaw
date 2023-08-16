@@ -49,6 +49,32 @@ function displayCurrentWeather(data) {
   
 
 
-function displayForecast(data) {
-  // Extract relevant data from the API response and update forecastContainer
-}
+  function displayForecast(data) {
+    const forecastList = data.list;
+    const forecastHTML = forecastList
+      .filter((item, index) => index % 8 === 0) // Take every 8th item for daily forecast
+      .map(item => {
+        const date = new Date(item.dt * 1000).toLocaleDateString();
+        const iconCode = item.weather[0].icon;
+        const temperatureKelvin = item.main.temp;
+        const temperatureFahrenheit = Math.round((temperatureKelvin - 273.15) * 9/5 + 32);
+        const windSpeed = item.wind.speed;
+        const humidity = item.main.humidity;
+  
+        const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
+  
+        return `
+          <div class="col-md-2">
+            <p>Date: ${date}</p>
+            <img src="${iconUrl}" alt="Weather Icon">
+            <p>Temperature: ${temperatureFahrenheit}°F</p>
+            <p>Wind Speed: ${windSpeed} m/s</p>
+            <p>Humidity: ${humidity}%</p>
+          </div>
+        `;
+      })
+      .join('');
+  
+    forecastContainer.innerHTML = forecastHTML;
+  }
+  
