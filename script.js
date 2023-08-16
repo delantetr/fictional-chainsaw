@@ -18,7 +18,7 @@ function getWeatherData(cityName) {
     .then(response => response.json())
     .then(data => {
         console.log(data)
-      // Process and display current weather and forecast data
+
       displayCurrentWeather(data);
       displayForecast(data);
     })
@@ -64,7 +64,7 @@ function displayCurrentWeather(data) {
   function displayForecast(data) {
     const forecastList = data.list;
     const forecastHTML = forecastList
-      .filter((item, index) => index % 8 === 0) // Take every 8th item for daily forecast
+      .filter((item, index) => index % 8 === 0)
       .map(item => {
         const date = new Date(item.dt * 1000).toLocaleDateString();
         const iconCode = item.weather[0].icon;
@@ -102,10 +102,10 @@ function displayCurrentWeather(data) {
   
   const searchHistoryContainer = document.getElementById('search-history');
 
-    // Store the list of previously searched cities (for demonstration purposes)
+
     let searchHistoryList = [];
 
-    // Function to display the list of previously searched cities
+
     function displaySearchHistory() {
     const searchHistoryHTML = searchHistoryList
         .map(cityName => `<button class="btn btn-secondary mb-2 search-history-btn">${cityName}</button>`)
@@ -116,7 +116,7 @@ function displayCurrentWeather(data) {
         ${searchHistoryHTML}
     `;
 
-    // Attach click event listeners to the search history buttons
+  
     const searchHistoryButtons = document.querySelectorAll('.search-history-btn');
     searchHistoryButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -126,9 +126,7 @@ function displayCurrentWeather(data) {
     });
     }
 
-    // ... Your other functions ...
-
-    // Assuming you have a function to update the search history list
+   
     function updateSearchHistory(cityName) {
     if (!searchHistoryList.includes(cityName)) {
         searchHistoryList.push(cityName);
@@ -136,7 +134,7 @@ function displayCurrentWeather(data) {
     }
     }
 
-    // ... Your other functions ...
+
 
     cityForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -150,11 +148,10 @@ function displayCurrentWeather(data) {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-        // Process and display current weather and forecast data
+
         displayCurrentWeather(data);
         displayForecast(data);
 
-        // Update the search history with the new city
         updateSearchHistory(cityName);
         })
         .catch(error => console.error('Error fetching weather data:', error));
